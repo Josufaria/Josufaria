@@ -11,6 +11,15 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Profile Stats & Activity Cards
+        run: python3 .github/scripts/generate_cards.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: Josufaria
+
       - name: Generate Snake Game
         uses: Platane/snk/svg-only@v3
         with:
